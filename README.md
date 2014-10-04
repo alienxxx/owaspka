@@ -86,7 +86,8 @@ CSRF (H)
 --------
 
  1. protect_from_forgery 	
- 2. cross site script tags disallowed?
+ 2.   <%= csrf_meta_tags %>
+ 3. cross site script tags disallowed?
 
 Misc (R)
 --------

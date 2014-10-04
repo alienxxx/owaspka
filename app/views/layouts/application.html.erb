@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= nav_bar :responsive => true, :brand => "OWASP Karlsruhe" do %>
+    <%= menu_group do %>
+        <%= menu_item "Round Tables", tables_path %>
+        <%= menu_item "Participants", participants_path %>
+    <% end %>
+<% end %>
 
-<%= yield %>
+<div class="container fluid">
+	<%= bootstrap_flash %>
+	<%= yield %>
+</div>
 
 </body>
 </html>
