@@ -9,9 +9,11 @@
 <body>
 <%= nav_bar :responsive => true, :brand => "OWASP Karlsruhe" do %>
     <%= menu_group do %>
-        <%= menu_item "Round Tables", tables_path %>
+        <%= menu_item "Round Tables", tables_path if admin_signed_in? %>
         <%= menu_item "Participants", participants_path %>
+        <%= menu_item "Log In", new_admin_session_path unless admin_signed_in? %>        
     <% end %>
+
 <% end %>
 
 <div class="container fluid">

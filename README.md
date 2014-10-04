@@ -29,10 +29,10 @@ Look at the rails placeholder page and then follow the steps shown there.
 
 Run the server and have a look at what is already there. Beautyfy:
 		
-		rails generate bootstrap:install static
-		rails g bootstrap:themed Tables
-		rails g bootstrap:themed Participants
-		rm app/assets/stylesheets/scaffold.css.scss
+	rails generate bootstrap:install static
+	rails g bootstrap:themed Tables
+	rails g bootstrap:themed Participants
+	rm app/assets/stylesheets/scaffold.css.scss
 
 Edit table model and explain the activerecords associations. Show example image from Henrik.
 
@@ -41,10 +41,6 @@ Edit table model and explain the activerecords associations. Show example image 
 Configure Routes
 
     vim config/routes.rb #e.g. root 'tables#index'
-
-Set up Database
-
-    rake db:setup
 
 
 ActiveRecord (R)
@@ -66,12 +62,17 @@ Devise (R)
     bundle
     rails g devise:install
     rails g devise Admin
-    rails g devise:views
     rake db:migrate
+    rails g devise:views
+    rake routes
+
+Add before_filter for tables_controller
+    vim app/controllers/tables_controller.rb
+
 SessionManagement
 SessionFixation
 reset_session.
-current_admin, before_filter
+
 
 Cookie Store (H)
 ------------
@@ -101,5 +102,3 @@ Further Reading
 ---------------
  1. http://guides.rubyonrails.org/security.html#cross-site-scripting-xss
  2. RailsGoat
-
-
