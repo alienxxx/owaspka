@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: MyString
+  date: 2014-10-04 09:24:12
+  agenda: MyText
+  volume: 1
+
+two:
+  topic: MyString
+  date: 2014-10-04 09:24:12
+  agenda: MyText
+  volume: 1

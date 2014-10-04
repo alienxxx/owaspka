@@ -1,0 +1,52 @@
+<%= form_for @table, :html => { :class => "form-horizontal table" } do |f| %>
+
+    <% if @table.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@table.errors.count, "error") %> prohibited this table from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @table.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :topic, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :topic, :class => 'form-control' %>
+    </div>
+    <%= error_span(@table[:topic]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :date, :class => 'form-control' %>
+    </div>
+    <%= error_span(@table[:date]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :agenda, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :agenda, :class => 'form-control' %>
+    </div>
+    <%= error_span(@table[:agenda]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :volume, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :volume, :class => 'form-control' %>
+    </div>
+    <%= error_span(@table[:volume]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            tables_path, :class => 'btn btn-default' %>
+
+<% end %>

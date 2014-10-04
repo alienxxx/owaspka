@@ -1,0 +1,38 @@
+<%= form_for @participant, :html => { :class => "form-horizontal participant" } do |f| %>
+
+    <% if @participant.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@participant.errors.count, "error") %> prohibited this participant from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @participant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@participant[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :table_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :table_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@participant[:table_id]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            participants_path, :class => 'btn btn-default' %>
+
+<% end %>
