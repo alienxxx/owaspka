@@ -34,13 +34,30 @@ Run the server and have a look at what is already there. Beautyfy:
 	rails g bootstrap:themed Participants
 	rm app/assets/stylesheets/scaffold.css.scss
 
+Have a look and add a navbar and flash_helpers so we can use the app
+
+    <%= nav_bar :responsive => true, :brand => "OWASP Karlsruhe" do %>
+        <%= menu_group do %>
+            <%= menu_item "Round Tables", tables_path if admin_signed_in? %>
+            <%= menu_item "Participants", participants_path %>
+            <%= menu_item "Log In", new_admin_session_path unless admin_signed_in? %>        
+        <% end %>
+    <% end %>
+
+    ...
+
+    <div class="container fluid">
+        <%= bootstrap_flash %>
+        <%= yield %>
+    </div>
+
 Edit table model and explain the activerecords associations. Show example image from Henrik.
 
     vim app/models/table.rb #add has_many :participants
 
 Configure Routes
 
-    vim config/routes.rb #e.g. root 'tables#index'
+    vim config/routes.rb #root 'participants#index'
 
 
 ActiveRecord (R)
@@ -67,11 +84,15 @@ Devise (R)
     rake routes
 
 Add before_filter for tables_controller
+
     vim app/controllers/tables_controller.rb
 
-SessionManagement
-SessionFixation
-reset_session.
+Show use of helper methods in application layout. Hiding the menu is not enough!
+
+    <%= menu_item "Round Tables", tables_path if admin_signed_in? %>
+    <%= menu_item "Log In", new_admin_session_path unless admin_signed_in? %>        
+
+SessionFixation: Look at cookie during log in. To use it manually, reset_session.
 
 
 Cookie Store (H)
