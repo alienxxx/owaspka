@@ -16,9 +16,9 @@ Before we begin (will not be shown):
 
 Initiate new Rails app
 
-    rails new owaspka
-    vim Gemfile #add 'twitter-bootstrap-rails' and uncomment therubyracer
+    rails new owaspka    
     git init #show .gitignore
+    vim Gemfile #add 'twitter-bootstrap-rails' and uncomment therubyracer
     rails server
 
 Look at the rails placeholder page and then follow the steps shown there.
@@ -28,19 +28,18 @@ Look at the rails placeholder page and then follow the steps shown there.
     rake db:migrate
 
 Run the server and have a look at what is already there. Beautyfy:
-		
-	rails generate bootstrap:install static
-	rails g bootstrap:themed Tables
-	rails g bootstrap:themed Participants
-	rm app/assets/stylesheets/scaffold.css.scss
+        
+    rails generate bootstrap:install static
+    rails g bootstrap:themed Tables
+    rails g bootstrap:themed Participants
+    rm app/assets/stylesheets/scaffold.css.scss
 
 Have a look and add a navbar and flash_helpers so we can use the app
 
     <%= nav_bar :responsive => true, :brand => "OWASP Karlsruhe" do %>
         <%= menu_group do %>
-            <%= menu_item "Round Tables", tables_path if admin_signed_in? %>
+            <%= menu_item "Round Tables", tables_path %>
             <%= menu_item "Participants", participants_path %>
-            <%= menu_item "Log In", new_admin_session_path unless admin_signed_in? %>        
         <% end %>
     <% end %>
 
@@ -64,7 +63,10 @@ ActiveRecord (R)
 ----------------
 
  1. find_by helpers, explain method missing overwrite
- 2. explain ORM 
+ 2. Explain ORM, example line in participants form
+
+         <%= collection_select(:participant, :table_id, Table.all, :id,  :topic, {}, :class => 'form-control') %>
+
  3. Why it helps to protect from sqli and what needs to be done to create a sqli
 
 XSS (H)
@@ -83,9 +85,9 @@ Devise (R)
     rails g devise:views
     rake routes
 
-Add before_filter for tables_controller
+Add before_filter in app/controllers/tables_controller.rb
 
-    vim app/controllers/tables_controller.rb
+     before_action :authenticate_admin!
 
 Show use of helper methods in application layout. Hiding the menu is not enough!
 
@@ -101,13 +103,13 @@ Cookie Store (H)
  1. in rails4 by default encrypted in rails 3 only signed
  2. secret_key_base. 
  3. Is much faster than db lookups.
- 4. beware of replay attacks. Know what to store in the cookie 	
+ 4. beware of replay attacks. Know what to store in the cookie  
  5. Expiration, Flags etc. are already set correctly
 
 CSRF (H)
 --------
 
- 1. protect_from_forgery 	
+ 1. protect_from_forgery    
  2.   <%= csrf_meta_tags %>
  3. cross site script tags disallowed?
 
@@ -123,3 +125,4 @@ Further Reading
 ---------------
  1. http://guides.rubyonrails.org/security.html#cross-site-scripting-xss
  2. RailsGoat
+
