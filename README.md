@@ -21,13 +21,13 @@ Initiate new Rails app
     vim Gemfile #add 'twitter-bootstrap-rails' and uncomment therubyracer
     rails server
 
-Look at the rails placeholder page and then follow the steps shown there.
+Look at what is already there. Open the rails placeholder page and then follow the steps shown there.
 
     rails generate scaffold Table topic:string date:datetime agenda:text volume:integer
     rails generate scaffold Participant name:string table:references
     rake db:migrate
 
-Run the server and have a look at what is already there. Beautyfy:
+Run the server and have a look at how MVC works there. Beautyfy:
         
     rails generate bootstrap:install static
     rails g bootstrap:themed Tables
@@ -50,7 +50,7 @@ Have a look and add a navbar and flash_helpers so we can use the app
         <%= yield %>
     </div>
 
-Edit table model and explain the activerecords associations. Show example image from Henrik.
+Edit table model and explain the activerecords associations. Show example image from Henrik and do rails console examples.
 
     vim app/models/table.rb #add has_many :participants
 
