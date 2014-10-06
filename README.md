@@ -65,9 +65,12 @@ ActiveRecord (R)
  1. find_by helpers, explain method missing overwrite
  2. Explain ORM, example line in participants form
 
-         <%= collection_select(:participant, :table_id, Table.all, :id,  :topic, {}, :class => 'form-control') %>
+        <%= collection_select(:participant, :table_id, Table.all, :id,  :topic, {}, :class => 'form-control') %>
 
  3. Why it helps to protect from sqli and what needs to be done to create a sqli
+         
+        user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+
 
 XSS (H)
 -------
