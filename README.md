@@ -70,6 +70,11 @@ ActiveRecord (R)
  3. Why it helps to protect from sqli and what needs to be done to create a sqli
          
         user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+        Client.where("first_name LIKE '%#{params[:first_name]}%'")
+
+    Better: 
+
+        Client.where("orders_count = ? AND locked = ?", params[:orders], false)
 
 
 XSS (H)
